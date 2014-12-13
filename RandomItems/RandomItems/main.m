@@ -8,21 +8,34 @@
 
 #import <Foundation/Foundation.h>
 #import "Item.h"
+#import "ItemContainer.h"
 
 int main(int argc, const char * argv[]) {
    @autoreleasepool {
-      NSMutableArray *items = [[NSMutableArray alloc] init];
       
-      for (int i = 0; i < 10; i++ ) {
-         Item *item = [Item randomItem];
-         [items addObject:item];
+      NSMutableArray *containers = [[NSMutableArray alloc] init];
+      
+      for (int j = 0; j < 10; j++ ) {
+         ItemContainer *cheapContainer = [[ItemContainer alloc] init];
+         cheapContainer.valueInDollars = 10;
+
+         NSMutableArray *items = [[NSMutableArray alloc] init];
+         for (int i = 0; i < 10; i++ ) {
+            Item *item = [Item randomItem];
+            item.valueInDollars = 1;
+            [items addObject:item];
+         }
+
+         cheapContainer.subItems = items;
+         [containers addObject:cheapContainer];
       }
       
-      for (Item *item in items) {
-         NSLog(@"%@", item);
-      }
+      ItemContainer *expensiveContainer = [[ItemContainer alloc] init];
+      expensiveContainer.valueInDollars = 100;
+      expensiveContainer.subItems = containers;
+  
+      NSLog(@"%@", expensiveContainer);
       
-      items = nil;
    }
     return 0;
 }
