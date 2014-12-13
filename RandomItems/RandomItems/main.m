@@ -22,6 +22,16 @@ int main(int argc, const char * argv[]) {
          NSLog(@"%@", item);
       }
       
+      
+      Item *itemWithName = [[Item alloc] initWithItemName:@"A Name"];
+      NSLog(@"%@", itemWithName);
+      
+      Item *itemWithNameSerial = [[Item alloc] initWithItemName:@"A Name" serialNumber:@"ABCD123"];
+      NSLog( @"%@", itemWithNameSerial);
+      
+      Item *itemWithout = [[Item alloc] init];
+      NSLog( @"%@", itemWithout);
+      
       items = nil;
    }
     return 0;
